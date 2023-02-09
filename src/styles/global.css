@@ -16,8 +16,27 @@
   --grey: #817d92;
   --dark-grey: #24232c;
   --very-dark-grey: #18171f;
+
+  /* sizes */
+  --L: '32px';
+  --M: '24px';
+  --S: '18px';
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 540px;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
   font-family: 'JetBrains Mono';
+  background-color: var(--very-dark-grey);
+  color: var(--white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
 }

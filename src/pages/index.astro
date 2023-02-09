@@ -1,4 +1,5 @@
 ---
+import CopyIcon from '../icons/CopyIcon.astro'
 import '../styles/global.css'
 ---
 
@@ -11,6 +12,15 @@ import '../styles/global.css'
     <title>Astro</title>
   </head>
   <body>
-    <h1>Astro</h1>
+    <main class='text-center w-full'>
+      <h2 class='text-2xl text-[var(--grey)] mb-8'>Password Generator</h2>
+      <div
+        class='w-full h-20 bg-[var(--dark-grey)] flex justify-between items-center py-5 px-8'
+      >
+        <h1 class='text-[32px]'>password</h1>
+        <CopyIcon />
+      </div>
+      <div>password generator content</div>
+    </main>
   </body>
 </html>
