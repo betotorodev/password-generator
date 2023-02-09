@@ -20,7 +20,13 @@ import '../styles/global.css'
         <h1 class='text-[32px]'>password</h1>
         <CopyIcon />
       </div>
-      <div>password generator content</div>
+      <section class='text-left mt-6 w-full bg-[var(--dark-grey)] py-5 px-8'>
+        <div class='flex justify-between items-center mb-4'>
+          <label class='text-lg' for='input-range'>Character Length</label>
+          <span class='text-[32px] text-[var(--neon-green)]'>10</span>
+        </div>
+        <input type='range' class='w-full' id='input-range' />
+      </section>
     </main>
   </body>
 </html>
