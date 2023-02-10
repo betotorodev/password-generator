@@ -1,4 +1,6 @@
 ---
+import { callGetStaticPaths } from 'astro/dist/core/render/route-cache'
+import ArrowIcon from '../icons/ArrowIcon.astro'
 import CopyIcon from '../icons/CopyIcon.astro'
 import '../styles/global.css'
 
@@ -8,6 +10,24 @@ const options = [
   'Include Numbers',
   'Include Symbols'
 ]
+
+const strengthLevel = () => {
+  const leves = {
+    toWeak: 1,
+    weak: 2,
+    medium: 3,
+    strong: 4
+  }
+
+  const emptySquare = '⬛️'
+  const fillSquare = '🟩'
+
+  for (let item in [1, 2, 3, 4]) {
+    return 'holi'
+  }
+}
+
+strengthLevel()
 ---
 
 <html lang='en'>
@@ -33,18 +53,35 @@ const options = [
           <span class='text-[32px] text-[var(--neon-green)]'>10</span>
         </div>
         <input type='range' class='w-full' id='input-range' />
-        <div>
-          <ul>
-            {
-              options.map((item) => (
-                <li class='flex gap-6 mb-5 mt-8 items-center'>
-                  <div class='w-5 h-5 border-2 border-white' />
-                  <p>{item}</p>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+        <ul class='mt-8'>
+          {
+            options.map((item) => (
+              <li class='flex gap-6 mb-5 items-center'>
+                <div class='w-5 h-5 border-2 border-white' />
+                <p>{item}</p>
+              </li>
+            ))
+          }
+        </ul>
+        <section
+          class='flex justify-between mt-8 px-8 py-6 w-100 bg-[var(--very-dark-grey)]'
+        >
+          <h3 class='text-lg text-[var(--grey)]'>STRENGTH</h3>
+          <div class='flex gap-4'>
+            <h2 class='text-2xl'>MEDIUM</h2>
+            <div class='flex gap-2'>
+              {
+                [1, 2, 3, 4].map((item) => (
+                  <div class='w-2.5 h-7 border-2 border-white' />
+                ))
+              }
+            </div>
+          </div>
+        </section>
+        <button
+          class='flex justify-center items-center gap-6 w-full bg-[var(--neon-green)] text-[var(--dark-grey)] text-lg py-5 mt-8'
+          >GENERATE <ArrowIcon /></button
+        >
       </section>
     </main>
   </body>
