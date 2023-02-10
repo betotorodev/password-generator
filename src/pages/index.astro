@@ -1,6 +1,13 @@
 ---
 import CopyIcon from '../icons/CopyIcon.astro'
 import '../styles/global.css'
+
+const options = [
+  'Include Uppercase Letters',
+  'Include Lowercase Letters',
+  'Include Numbers',
+  'Include Symbols'
+]
 ---
 
 <html lang='en'>
@@ -26,6 +33,18 @@ import '../styles/global.css'
           <span class='text-[32px] text-[var(--neon-green)]'>10</span>
         </div>
         <input type='range' class='w-full' id='input-range' />
+        <div>
+          <ul>
+            {
+              options.map((item) => (
+                <li class='flex gap-6 mb-5 mt-8 items-center'>
+                  <div class='w-5 h-5 border-2 border-white' />
+                  <p>{item}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </section>
     </main>
   </body>
