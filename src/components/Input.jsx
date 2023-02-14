@@ -23,7 +23,7 @@ const PASSWORD_OPTIONS = {
 
 export const Input = () => {
   const [value, setValue] = useState(8)
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('password')
   const [option, setOption] = useState(PASSWORD_OPTIONS)
 
   const options = [
@@ -38,14 +38,30 @@ export const Input = () => {
   const letters = `abcdefghijklmnopqrstuvwxyz`
 
   const getPassword= () => {
-    const numbersArray = numbers.split('')
-    const charactersArray = characters.split('')
-    const lettersArray = letters.split('')
-  
+    const numbersArray = option[2].isActive ? numbers.split('') : []
+    const charactersArray = option[3].isActive ? characters.split('') : []
+    const lettersArray = !option[0].isActive && !option[1].isActive ? [] : letters.split('').map((letter, index) => {
+      if (option[0].isActive && option[1].isActive) {
+        let max = letters.length - 1
+        let min = 0 
+        const randomNumber = Math.floor((Math.random() * (max - min + 1)) + min);
+        if (randomNumber === index) {
+          return letter
+        } else {
+          return letter.toLocaleUpperCase()
+        }
+      } else if (option[0].isActive && !option[1].isActive) {
+        return letter.toLocaleUpperCase()
+      } else {
+        return letter
+      }
+    })
+    
+
     const arrayToIterate = [...numbersArray, ...charactersArray, ...lettersArray]
-
+    
     const passwordArray = []
-
+    
     for (let pass = 0; pass < value; pass++) {
       let max = arrayToIterate.length - 1
       let min = 0 
