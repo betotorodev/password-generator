@@ -1,33 +1,6 @@
 ---
-import { callGetStaticPaths } from 'astro/dist/core/render/route-cache'
-import ArrowIcon from '../icons/ArrowIcon.astro'
-import CopyIcon from '../icons/CopyIcon.astro'
+import { Input } from '../components/Input'
 import '../styles/global.css'
-
-const options = [
-  'Include Uppercase Letters',
-  'Include Lowercase Letters',
-  'Include Numbers',
-  'Include Symbols'
-]
-
-const strengthLevel = () => {
-  const leves = {
-    toWeak: 1,
-    weak: 2,
-    medium: 3,
-    strong: 4
-  }
-
-  const emptySquare = '⬛️'
-  const fillSquare = '🟩'
-
-  for (let item in [1, 2, 3, 4]) {
-    return 'holi'
-  }
-}
-
-strengthLevel()
 ---
 
 <html lang='en'>
@@ -39,50 +12,6 @@ strengthLevel()
     <title>Astro</title>
   </head>
   <body>
-    <main class='text-center w-full'>
-      <h2 class='text-2xl text-[var(--grey)] mb-8'>Password Generator</h2>
-      <div
-        class='w-full h-20 bg-[var(--dark-grey)] flex justify-between items-center py-5 px-8'
-      >
-        <h1 class='text-[32px]'>password</h1>
-        <CopyIcon />
-      </div>
-      <section class='text-left mt-6 w-full bg-[var(--dark-grey)] py-5 px-8'>
-        <div class='flex justify-between items-center mb-4'>
-          <label class='text-lg' for='input-range'>Character Length</label>
-          <span class='text-[32px] text-[var(--neon-green)]'>10</span>
-        </div>
-        <input type='range' class='w-full' id='input-range' />
-        <ul class='mt-8'>
-          {
-            options.map((item) => (
-              <li class='flex gap-6 mb-5 items-center'>
-                <div class='w-5 h-5 border-2 border-white' />
-                <p>{item}</p>
-              </li>
-            ))
-          }
-        </ul>
-        <section
-          class='flex justify-between mt-8 px-8 py-6 w-100 bg-[var(--very-dark-grey)]'
-        >
-          <h3 class='text-lg text-[var(--grey)]'>STRENGTH</h3>
-          <div class='flex gap-4'>
-            <h2 class='text-2xl'>MEDIUM</h2>
-            <div class='flex gap-2'>
-              {
-                [1, 2, 3, 4].map((item) => (
-                  <div class='w-2.5 h-7 border-2 border-white' />
-                ))
-              }
-            </div>
-          </div>
-        </section>
-        <button
-          class='flex justify-center items-center gap-6 w-full bg-[var(--neon-green)] text-[var(--dark-grey)] text-lg py-5 mt-8'
-          >GENERATE <ArrowIcon /></button
-        >
-      </section>
-    </main>
+    <Input client:visible />
   </body>
 </html>
