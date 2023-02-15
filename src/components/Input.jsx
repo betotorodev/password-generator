@@ -1,6 +1,7 @@
 import { useEffect, useState } from "preact/hooks"
 import ArrowIcon from '../icons/ArrowIcon.astro'
 import CopyIcon from '../icons/CopyIcon.astro'
+import { Strength } from "./Strength"
 
 const PASSWORD_OPTIONS = {
   0: {
@@ -104,28 +105,6 @@ export const Input = () => {
     )
   }
 
-  const Strength = ({ item, strength }) => {
-    const [level, setLevel] = useState(1)
-    const [color, setColor] = useState('')
-
-     useEffect(() => {
-       if (strength < 11) {
-         setLevel(1)
-         setColor('bg-[var(--red)]')
-        } else if (strength < 14) {
-          setLevel(2)
-          setColor('bg-[var(--orange)]')
-        } else if (strength < 16) {
-          setLevel(3)
-          setColor('bg-[var(--yellow)]')
-        } else {
-          setLevel(4)
-          setColor('bg-[var(--neon-green)]')
-        }
-      }, [strength])
-
-     return <div class={`w-2.5 h-7 ${item > level ? 'border-2 border-white bg-transparent' : `border-0 ${color}`}`} />
-   }
 
   return (
     <>
