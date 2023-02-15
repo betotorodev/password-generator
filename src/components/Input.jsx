@@ -25,6 +25,7 @@ export const Input = () => {
   const [value, setValue] = useState(8)
   const [password, setPassword] = useState('password')
   const [option, setOption] = useState(PASSWORD_OPTIONS)
+  const [error, setError] = useState('')
 
   const options = [
     'Include Uppercase Letters',
@@ -38,39 +39,45 @@ export const Input = () => {
   const letters = `abcdefghijklmnopqrstuvwxyz`
 
   const getPassword= () => {
-    const numbersArray = option[2].isActive ? numbers.split('') : []
-    const charactersArray = option[3].isActive ? characters.split('') : []
-    const lettersArray = !option[0].isActive && !option[1].isActive ? [] : letters.split('').map((letter, index) => {
-      if (option[0].isActive && option[1].isActive) {
-        let max = letters.length - 1
+    if (!option[0].isActive && !option[1].isActive && !option[2].isActive && !option[3].isActive) {
+      setError('We need at least one option to generate your password')
+      return
+    } else {
+      const numbersArray = option[2].isActive ? numbers.split('') : []
+      const charactersArray = option[3].isActive ? characters.split('') : []
+      const lettersArray = !option[0].isActive && !option[1].isActive ? [] : letters.split('').map((letter, index) => {
+        if (option[0].isActive && option[1].isActive) {
+          let max = letters.length - 1
+          let min = 0 
+          const randomNumber = Math.floor((Math.random() * (max - min + 1)) + min);
+          if (randomNumber === index) {
+            return letter
+          } else {
+            return letter.toLocaleUpperCase()
+          }
+        } else if (option[0].isActive && !option[1].isActive) {
+          return letter.toLocaleUpperCase()
+        } else {
+          return letter
+        }
+      })
+      
+  
+      const arrayToIterate = [...numbersArray, ...charactersArray, ...lettersArray]
+      
+      const passwordArray = []
+      
+      for (let pass = 0; pass < value; pass++) {
+        let max = arrayToIterate.length - 1
         let min = 0 
         const randomNumber = Math.floor((Math.random() * (max - min + 1)) + min);
-        if (randomNumber === index) {
-          return letter
-        } else {
-          return letter.toLocaleUpperCase()
-        }
-      } else if (option[0].isActive && !option[1].isActive) {
-        return letter.toLocaleUpperCase()
-      } else {
-        return letter
+  
+        passwordArray.push(arrayToIterate[randomNumber])
       }
-    })
-    
-
-    const arrayToIterate = [...numbersArray, ...charactersArray, ...lettersArray]
-    
-    const passwordArray = []
-    
-    for (let pass = 0; pass < value; pass++) {
-      let max = arrayToIterate.length - 1
-      let min = 0 
-      const randomNumber = Math.floor((Math.random() * (max - min + 1)) + min);
-
-      passwordArray.push(arrayToIterate[randomNumber])
+  
+      setPassword(passwordArray.join(''))
+      setError('')
     }
-
-    setPassword(passwordArray.join(''))
   }
 
   const handleOptions = (indexOption) => {
@@ -96,6 +103,29 @@ export const Input = () => {
       })
     )
   }
+
+  const Strength = ({ item, strength }) => {
+    const [level, setLevel] = useState(1)
+    const [color, setColor] = useState('')
+
+     useEffect(() => {
+       if (strength < 11) {
+         setLevel(1)
+         setColor('bg-[var(--red)]')
+        } else if (strength < 14) {
+          setLevel(2)
+          setColor('bg-[var(--orange)]')
+        } else if (strength < 16) {
+          setLevel(3)
+          setColor('bg-[var(--yellow)]')
+        } else {
+          setLevel(4)
+          setColor('bg-[var(--neon-green)]')
+        }
+      }, [strength])
+
+     return <div class={`w-2.5 h-7 ${item > level ? 'border-2 border-white bg-transparent' : `border-0 ${color}`}`} />
+   }
 
   return (
     <>
@@ -138,6 +168,7 @@ export const Input = () => {
               ))
             }
           </ul>
+          {!!error && <span class='text-[var(--red)]'>{error}</span>}
           <section
             class='flex justify-between mt-8 px-8 py-6 w-100 bg-[var(--very-dark-grey)]'
           >
@@ -147,7 +178,7 @@ export const Input = () => {
               <div class='flex gap-2'>
                 {
                   [1, 2, 3, 4].map((item) => (
-                    <div class='w-2.5 h-7 border-2 border-white' />
+                    <Strength item={item} strength={value}/>
                   ))
                 }
               </div>
