@@ -87,7 +87,14 @@ export const Input = () => {
 
   const copyClipboard = () => {
     navigator.clipboard.writeText(password)
-      .then(() => console.log('copy tex:', password))
+    import('https://cdn.skypack.dev/wc-toast').then(({ toast }) =>
+      toast('Copied', {
+        duration: 2000,
+        icon: {
+          type: 'success'
+        }
+      })
+    )
   }
 
   return (
