@@ -1,7 +1,7 @@
-import { usePassword } from "../hooks/usePassword"
+import { useRange } from "../hooks/useRange"
 
 export const Range = () => {
-  const {value, setValue} = usePassword()
+  const {value, setValue} = useRange()
   return (
     <>
       <div class='flex justify-between items-center mb-4'>

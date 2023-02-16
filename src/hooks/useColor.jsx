@@ -1,8 +1,8 @@
 import { useEffect, useState } from "preact/hooks"
-import { usePassword } from "./usePassword"
+import { useRange } from "./useRange"
 
 export const useColor = () => {
-  const { value } = usePassword()
+  const { value } = useRange()
   const [level, setLevel] = useState(1)
   const [color, setColor] = useState('')
 

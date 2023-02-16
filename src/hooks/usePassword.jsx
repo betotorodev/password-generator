@@ -1,6 +1,7 @@
 import { useContext, useState } from "preact/hooks"
 import { PasswordContext } from "../context/passwordContext"
 import { usePasswordOptions } from "./usePasswordOptions"
+import { useRange } from "./useRange"
 
 const numbers = `0123456789`
 const characters = `!@#$%^&*()_+-=[]{}|;':",.<>/?`
@@ -9,8 +10,9 @@ const letters = `abcdefghijklmnopqrstuvwxyz`
 
 
 export const usePassword = () => {
-  const { value, setValue, password, setPassword } = useContext(PasswordContext)
+  const { password, setPassword } = useContext(PasswordContext)
   const { option } = usePasswordOptions()
+  const { value } = useRange()
   const [error, setError] = useState('')
 
   const getPassword= () => {
@@ -55,5 +57,5 @@ export const usePassword = () => {
     }
   }
 
-  return { getPassword, password, value, setValue, error, option }
+  return { getPassword, password, error, option }
 }
