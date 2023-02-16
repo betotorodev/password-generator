@@ -5,28 +5,10 @@ const numbers = `0123456789`
 const characters = `!@#$%^&*()_+-=[]{}|;':",.<>/?`
 const letters = `abcdefghijklmnopqrstuvwxyz`
 
-const PASSWORD_OPTIONS = {
-  0: {
-    type: 'uppercase',
-    isActive: false,
-  },
-  1: {
-    type: 'lowercase',
-    isActive: false
-  },
-  2: {
-    type: 'numbers',
-    isActive: false
-  },
-  3: {
-    type: 'symbols',
-    isActive: false
-  }
-}
+
 
 export const usePassword = () => {
-  const { value, setValue, password, setPassword } = useContext(PasswordContext)
-  const [option, setOption] = useState(PASSWORD_OPTIONS)
+  const { value, setValue, password, setPassword, option, setOption } = useContext(PasswordContext)
   const [error, setError] = useState('') 
 
   const getPassword= () => {
