@@ -23,7 +23,7 @@ export const PasswordConfigs = () => {
                 <div class={`w-5 h-5 border-2  ${option[index].isActive ? 'bg-[var(--neon-green)] border-[var(--neon-green)]': 'border-white'}`} />
                 <svg class='absolute top-1 left-[3px]' width="14" height="12" xmlns="http://www.w3.org/2000/svg"><path stroke="#18171F" stroke-width="3" fill="none" d="M1 5.607 4.393 9l8-8"/></svg>
               </div>
-              <p>{item}</p>
+              <p class='text-base sm:text-lg'>{item}</p>
             </li>
           ))
         }

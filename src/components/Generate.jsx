@@ -4,7 +4,7 @@ export const Generate = () => {
   const { getPassword } = usePassword()
   return (
     <button
-      class='border-2 border-transparent flex justify-center items-center gap-6 w-full bg-[var(--neon-green)] brightness-90 text-[var(--dark-grey)] text-lg py-5 mt-8 hover:brightness-100'
+      class='border-2 border-transparent flex justify-center items-center gap-6 w-full bg-[var(--neon-green)] brightness-90 text-[var(--dark-grey)] text-base sm:text-lg py-5 mt-8 hover:brightness-100'
       onClick={getPassword}
       >
       GENERATE
