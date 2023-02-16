@@ -1,24 +1,26 @@
 import { useEffect, useState } from "preact/hooks"
+import { usePassword } from "./usePassword"
 
-export const useColor = ({ strength }) => {
+export const useColor = () => {
+  const { value } = usePassword()
   const [level, setLevel] = useState(1)
   const [color, setColor] = useState('')
 
    useEffect(() => {
-     if (strength < 11) {
+     if (value < 11) {
        setLevel(1)
        setColor('bg-[var(--red)]')
-      } else if (strength < 14) {
+      } else if (value < 14) {
         setLevel(2)
         setColor('bg-[var(--orange)]')
-      } else if (strength < 16) {
+      } else if (value < 16) {
         setLevel(3)
         setColor('bg-[var(--yellow)]')
       } else {
         setLevel(4)
         setColor('bg-[var(--neon-green)]')
       }
-    }, [strength])
+    }, [value])
 
     return { level, color }
 }
