@@ -1,9 +1,11 @@
 import { usePassword } from "../hooks/usePassword"
+import { usePasswordOptions } from "../hooks/usePasswordOptions"
 import { Range } from "./Range"
 
 
 export const PasswordConfigs = () => {
-  const { option, handleOptions, error } = usePassword()
+  const { error } = usePassword()
+  const { option, handleOptions } = usePasswordOptions()
   const options = [
     'Include Uppercase Letters',
     'Include Lowercase Letters',

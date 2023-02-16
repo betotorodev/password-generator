@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from "preact/hooks"
+import { useContext, useState } from "preact/hooks"
 import { PasswordContext } from "../context/passwordContext"
+import { usePasswordOptions } from "./usePasswordOptions"
 
 const numbers = `0123456789`
 const characters = `!@#$%^&*()_+-=[]{}|;':",.<>/?`
@@ -8,8 +9,9 @@ const letters = `abcdefghijklmnopqrstuvwxyz`
 
 
 export const usePassword = () => {
-  const { value, setValue, password, setPassword, option, setOption } = useContext(PasswordContext)
-  const [error, setError] = useState('') 
+  const { value, setValue, password, setPassword } = useContext(PasswordContext)
+  const { option } = usePasswordOptions()
+  const [error, setError] = useState('')
 
   const getPassword= () => {
     if (!option[0].isActive && !option[1].isActive && !option[2].isActive && !option[3].isActive) {
@@ -53,17 +55,5 @@ export const usePassword = () => {
     }
   }
 
-  const handleOptions = (indexOption) => {
-    let copyData = Object.assign({}, option)
-    let currentValue = copyData[indexOption]
-    currentValue = {
-      ...currentValue,
-      isActive: !currentValue.isActive
-    }
-    copyData[indexOption] = currentValue
-
-    setOption(copyData)
-  }
-
-  return { getPassword, handleOptions, password, value, setValue, error, option }
+  return { getPassword, password, value, setValue, error, option }
 }
