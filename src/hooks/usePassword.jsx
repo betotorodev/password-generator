@@ -10,10 +10,9 @@ const letters = `abcdefghijklmnopqrstuvwxyz`
 
 
 export const usePassword = () => {
-  const { password, setPassword } = useContext(PasswordContext)
+  const { password, setPassword, error, setError } = useContext(PasswordContext)
   const { option } = usePasswordOptions()
   const { value } = useRange()
-  const [error, setError] = useState('')
 
   const getPassword= () => {
     if (!option[0].isActive && !option[1].isActive && !option[2].isActive && !option[3].isActive) {

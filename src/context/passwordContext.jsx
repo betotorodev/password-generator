@@ -26,8 +26,9 @@ export const PasswordProvider = ({ children }) => {
   const [value, setValue] = useState(8)
   const [password, setPassword] = useState('password')
   const [option, setOption] = useState(PASSWORD_OPTIONS)
+  const [error, setError] = useState('')
 
-  return <PasswordContext.Provider value={{value, setValue, password, setPassword, option, setOption}}>
+  return <PasswordContext.Provider value={{value, setValue, password, setPassword, option, setOption, error, setError}}>
     {children}
   </PasswordContext.Provider>
 }
